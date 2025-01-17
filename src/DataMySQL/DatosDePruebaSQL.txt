@@ -1,0 +1,44 @@
+INSERT INTO administradores (id, email, password) VALUES
+(1, 'game@hotGame.com', 'admin'),
+(2, 'admin@tienda.com', 'admin123'),
+(3, 'admin@admin.com', 'adminadmin');
+
+INSERT INTO user (id, email, fecha_registro, is_premium, nombre, password) VALUES
+(1, 'usuario1@tienda.com', '2023-01-10', true, 'Juan Pérez', 'user123'),
+(2, 'usuario2@tienda.com', '2023-05-20', false, 'María Gómez', 'user456'),
+(3, 'usuario3@tienda.com', '2023-07-15', true, 'Carlos Fernández', 'user789'),
+(4, 'usuario4@tienda.com', '2024-02-25', false, 'Ana López', 'user321'),
+(5, 'usuario5@tienda.com', '2024-03-01', true, 'Pedro Martínez', 'user654');
+
+INSERT INTO videojuego (id, cantidad, categoria, codigo, descripcion, imagen, nombre, precio) VALUES
+(1, 50, 'Acción', 'LZG3-AIAP-NAZT-QDF8', 'Videojuego de acción emocionante', 'https://sm.ign.com/t/ign_es/screenshot/default/wallpapersden_rasy.1280.jpg', 'Super Action Game', 49.99),
+(2, 30, 'Aventura', 'EGUQ-O21X-TMW8-4K85', 'Explora mundos fantásticos', 'https://i.blogs.es/ab965a/nintendoswitch_tlozbreathofthewild_artwork_illustration_01.0/1366_2000.jpeg', 'Aventura Mágica', 59.99),
+(3, 25, 'Deportes', 'XAWC-WO8K-P271-54D6', 'Fútbol de última generación', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRMZLZXpGXP7kiD3RcrS-d8EVreV5DmBN9Iw&s', 'Fútbol 2024', 39.99),
+(4, 100, 'RPG', '2SXY-L3U2-SCD8-4POH', 'Juego de rol épico con historias inmersivas', 'https://store-images.s-microsoft.com/image/apps.38797.14221084755127353.67508189-beaa-4b9a-bb24-26fe76655b6f.d590a94a-e466-484c-b261-bdf96dc99df0?mode=scale&q=90&h=720&w=1280', 'Héroes de Fantasía', 69.99),
+(5, 200, 'Acción', 'W0ZE-AV1I-VLZC-BWTI', 'Juego de acción en primera persona', 'https://t3.ftcdn.net/jpg/07/87/96/22/360_F_787962217_WB6mN2KysPsIFDMRdk46C4hTVvh2dtEj.jpg', 'Tiroteo Mortal', 29.99),
+(6, 75, 'Estrategia', '52Q0-9DTY-MXBE-DG3E', 'Juego de estrategia en tiempo real', 'https://cdn.ageofempires.com/aoe/wp-content/uploads/2024/02/AoEM-banner-2520x1080-2.webp', 'Guerra Global', 49.99),
+(7, 150, 'Simulación', 'XZIA-MFJ6-DZ6S-SYND', 'Simulador de vida en una granja', 'https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/media/image/2023/11/stardew-valley-juego-granjas-3226526.jpg?tf=3840x', 'Granja Feliz', 19.99),
+(8, 60, 'Deportes', 'LNC3-XSZJ-TN91-2T5C', 'Simulador de baloncesto', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRltlknFRqiTcd9ZT08d_UIYJSIFtJDU6kiog&s', 'Basketball Challenge', 34.99),
+(9, 80, 'Acción', 'FJE1-NNEM-4DWZ-XIN5', 'Juego de acción con elementos de sigilo', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqoxtn2kkfrKx3srcRvUfzx5hRwvlt4DNn7Q&s', 'Sigilo Extremo', 44.99),
+(10, 50, 'Aventura', '2U1M-KK3M-IJRC-5NFG', 'Exploración y supervivencia en islas tropicales', 'https://external-preview.redd.it/viking-survival-game-aska-is-out-today-in-early-access-v0-Jp7K9rYbf6ZUvcS_spCrRYLbI4DDq9v3ac4RwE6NcDI.jpg?auto=webp&s=fa34233f11f303bb18288b6182b9be144277de67', 'Supervivencia Tropical', 39.99);
+
+
+INSERT INTO venta (id, fecha_compra, total, usuario_id) VALUES
+(1, '2024-11-10', 189.97, 1),  -- Juan Pérez
+(2, '2024-11-12', 149.97, 2),  -- María Gómez
+(3, '2024-11-15', 79.98, 3),   -- Carlos Fernández
+(4, '2024-11-18', 129.97, 4),  -- Ana López
+(5, '2024-11-20', 139.97, 5);  -- Pedro Martínez
+
+
+INSERT INTO venta_videojuego (id, cantidad, venta_id, videojuego_id) VALUES
+(1, 2, 1, 1),  -- Juan Pérez compró 2 unidades de Super Action Game
+(2, 1, 1, 3),  -- Juan Pérez compró 1 unidad de Fútbol 2024
+(3, 3, 2, 2),  -- María Gómez compró 3 unidades de Aventura Mágica
+(4, 1, 2, 4),  -- María Gómez compró 1 unidad de Héroes de Fantasía
+(5, 1, 3, 5),  -- Carlos Fernández compró 1 unidad de Tiroteo Mortal
+(6, 2, 3, 7),  -- Carlos Fernández compró 2 unidades de Granja Feliz
+(7, 1, 4, 6),  -- Ana López compró 1 unidad de Guerra Global
+(8, 2, 4, 8),  -- Ana López compró 2 unidades de Basketball Challenge
+(9, 1, 5, 9),  -- Pedro Martínez compró 1 unidad de Sigilo Extremo
+(10, 3, 5, 10); -- Pedro Martínez compró 3 unidades de Supervivencia Tropical
