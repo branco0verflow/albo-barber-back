@@ -62,11 +62,11 @@ public class ReservaController {
 
     private List<LocalTime> generarHorarios() {
         List<LocalTime> horarios = new ArrayList<>();
-        LocalTime horaInicio = LocalTime.of(9, 0); // 9:00 A.M.
+        LocalTime horaInicio = LocalTime.of(10, 0); // 10:00 A.M.
         LocalTime horaFin = LocalTime.of(20, 0);  // 8:00 P.M.
         while (horaInicio.isBefore(horaFin)) {
             horarios.add(horaInicio);
-            horaInicio = horaInicio.plusMinutes(40); // Incrementar en 40 minutos
+            horaInicio = horaInicio.plusMinutes(30); // Incrementar en 30 minutos
         }
         return horarios;
     }
