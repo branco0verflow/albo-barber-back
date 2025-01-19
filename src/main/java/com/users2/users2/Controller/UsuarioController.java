@@ -4,6 +4,7 @@ import com.users2.users2.Entity.Usuario;
 import com.users2.users2.Repository.UsuarioRepository;
 import com.users2.users2.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,16 @@ public class UsuarioController {
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/buscarPorNombre/{nombre}")
+    public ResponseEntity<?> buscarUsuariosPorNombre(@PathVariable String nombre) {
+        List<Usuario> usuarios = usuarioService.buscarPorNombre(nombre);
+        if (usuarios.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron usuarios con el nombre: " + nombre);
+        }
+        return ResponseEntity.ok(usuarios);
     }
 
 

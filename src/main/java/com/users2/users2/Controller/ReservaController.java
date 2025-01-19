@@ -66,7 +66,7 @@ public class ReservaController {
         LocalTime horaFin = LocalTime.of(20, 0);  // 8:00 P.M.
         while (horaInicio.isBefore(horaFin)) {
             horarios.add(horaInicio);
-            horaInicio = horaInicio.plusMinutes(30); // Incrementar en 30 minutos
+            horaInicio = horaInicio.plusMinutes(40); // Incrementar en 40 minutos
         }
         return horarios;
     }

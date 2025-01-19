@@ -35,4 +35,8 @@ public class UsuarioService {
             return usuarioRepository.save(usuarioExistente);
         }).orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
     }
+
+    public List<Usuario> buscarPorNombre(String nombre) {
+        return usuarioRepository.findByNombreContainingIgnoreCase(nombre);
+    }
 }
