@@ -1,7 +1,9 @@
 package com.users2.users2.Controller;
 
 import com.users2.users2.Entity.Reserva;
+import com.users2.users2.Entity.Usuario;
 import com.users2.users2.Repository.ReservaRepository;
+import com.users2.users2.Repository.UsuarioRepository;
 import com.users2.users2.Service.ReservaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,14 +25,46 @@ public class ReservaController {
     @Autowired
     private ReservaService reservaService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository; // Repositorio para buscar usuarios
+
     @GetMapping
     public List<Reserva> obtenerTodas() {
         return reservaService.obtenerTodas();
     }
 
     @PostMapping
-    public Reserva guardar(@RequestBody Reserva reserva) {
-        return reservaService.guardar(reserva);
+    public ResponseEntity<?> guardar(@RequestBody Reserva reservaRequest) {
+        try {
+            Reserva reserva = new Reserva();
+
+            reserva.setFecha(reservaRequest.getFecha());
+            reserva.setHora(reservaRequest.getHora());
+            reserva.setTipoDeCorte(reservaRequest.getTipoDeCorte());
+            reserva.setEstado(reservaRequest.isEstado());
+            reserva.setCortesia(reservaRequest.getCortesia());
+            reserva.setSocio(reservaRequest.getSocio());
+
+            if (reservaRequest.getUsuario() != null && reservaRequest.getUsuario().getId() != null) {
+                // Buscar usuario por ID y asignarlo si existe
+                Optional<Usuario> usuarioOpt = usuarioRepository.findById(reservaRequest.getUsuario().getId());
+                if (usuarioOpt.isPresent()) {
+                    reserva.setUsuario(usuarioOpt.get());
+                } else {
+                    return ResponseEntity.badRequest().body("El usuario con ID " + reservaRequest.getUsuario().getId() + " no existe.");
+                }
+            } else {
+                // Si no hay usuario registrado, usar los datos de nombre y teléfono
+                reserva.setNombreCliente(reservaRequest.getNombreCliente());
+                reserva.setTelefonoCliente(reservaRequest.getTelefonoCliente());
+            }
+
+            Reserva nuevaReserva = reservaService.guardar(reserva);
+            return ResponseEntity.ok(nuevaReserva);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar la reserva.");
+        }
     }
 
     @GetMapping("/horarios-disponibles/{socioId}")

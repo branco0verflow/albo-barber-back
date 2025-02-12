@@ -15,6 +15,7 @@ public class Reserva {
 
     @JsonProperty("fechaSeleccionada")
     private LocalDate fecha;
+
     @JsonProperty("horarioSeleccionado")
     private LocalTime hora;
 
@@ -23,8 +24,11 @@ public class Reserva {
     private TipoCorte tipoDeCorte;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = true) // Permitir que sea opcional
     private Usuario usuario;
+
+    private String nombreCliente; // Para clientes no registrados
+    private String telefonoCliente; // Teléfono opcional
 
     private boolean estado = false; // Indica si la reserva está pendiente o hecha
 
@@ -106,18 +110,28 @@ public class Reserva {
         this.socio = socio;
     }
 
-    public Reserva(Long id, LocalDate fecha, LocalTime hora, TipoCorte tipoDeCorte, Usuario usuario, boolean estado, Cortesia cortesia, Socio socio) {
+    public String getNombreCliente() { return nombreCliente; }
+    public void setNombreCliente(String nombreCliente) { this.nombreCliente = nombreCliente; }
+
+    public String getTelefonoCliente() { return telefonoCliente; }
+    public void setTelefonoCliente(String telefonoCliente) { this.telefonoCliente = telefonoCliente; }
+
+    // Constructor completo
+    public Reserva(Long id, LocalDate fecha, LocalTime hora, TipoCorte tipoDeCorte, Usuario usuario,
+                   String nombreCliente, String telefonoCliente, boolean estado, Cortesia cortesia, Socio socio) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.tipoDeCorte = tipoDeCorte;
         this.usuario = usuario;
+        this.nombreCliente = nombreCliente;
+        this.telefonoCliente = telefonoCliente;
         this.estado = estado;
         this.cortesia = cortesia;
         this.socio = socio;
     }
 
-    public Reserva(){}
+    public Reserva() {}
 
     public Reserva(Long id, Socio socio, LocalDate fecha, LocalTime hora) {
         this.id = id;
