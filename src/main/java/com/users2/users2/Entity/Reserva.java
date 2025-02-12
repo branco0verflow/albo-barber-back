@@ -140,5 +140,14 @@ public class Reserva {
         this.hora = hora;
     }
 
+    public Reserva(Long id, Socio socio, LocalDate fecha, LocalTime hora, String nombreCliente, String telefonoCliente) {
+        this.id = id;
+        this.socio = socio;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.nombreCliente = nombreCliente;
+        this.telefonoCliente = telefonoCliente;
+    }
+
 }
 
