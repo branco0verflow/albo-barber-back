@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.users2.users2.Users2ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.887 s - in com.users2.users2.Users2ApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.598 s - in com.users2.users2.Users2ApplicationTests

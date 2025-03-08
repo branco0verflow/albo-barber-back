@@ -51,7 +51,7 @@ public class ReservaService {
     }
 
     public List<Reserva> obtenerReservasPorSocioYFecha(Long socioId, LocalDate fecha) {
-        return reservaRepository.findBySocioIdAndFecha(socioId, fecha);
+        return reservaRepository.findReservasOrdenadas(socioId, fecha);
     }
 
     @Transactional
