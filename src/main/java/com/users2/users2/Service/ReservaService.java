@@ -71,8 +71,30 @@ public class ReservaService {
         }
     }
 
+    @Transactional
+    public String confirmarReservaNoMonetaria(Long reservaId) {
+        Optional<Reserva> optionalReserva = reservaRepository.findById(reservaId);
+        if (optionalReserva.isPresent()) {
+            Reserva reserva = optionalReserva.get();
+            if (!reserva.getEstado()) { // Solo confirma si no está ya confirmado
+                reserva.setEstado(true);
+                reserva.setNoMonetario(true);
+                reservaRepository.save(reserva);
+                return "Reserva confirmada no monetaria con éxito.";
+            } else {
+                return "La reserva ya estaba confirmada como no monetaria.";
+            }
+        } else {
+            return "Reserva no encontrada.";
+        }
+    }
+
     public BigDecimal obtenerTotalFacturado(LocalDate fecha) {
         return reservaRepository.obtenerTotalFacturado(fecha);
+    }
+
+    public BigDecimal obtenerTotalNoMonetario(LocalDate fecha) {
+        return reservaRepository.obtenerTotalNoMonetario(fecha);
     }
 
 }

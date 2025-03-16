@@ -42,6 +42,7 @@ public class ReservaController {
             reserva.setHora(reservaRequest.getHora());
             reserva.setTipoDeCorte(reservaRequest.getTipoDeCorte());
             reserva.setEstado(reservaRequest.isEstado());
+            reserva.setNoMonetario(reservaRequest.isNoMonetario());
             reserva.setCortesia(reservaRequest.getCortesia());
             reserva.setSocio(reservaRequest.getSocio());
 
@@ -156,8 +157,26 @@ public class ReservaController {
         }
     }
 
+    // Cambiar el estado de una reserva a true y noMonetario a true
+    @PatchMapping("/{id}/confirmarNoMonetario")
+    public ResponseEntity<String> confirmarReservaNoMonetario(@PathVariable Long id) {
+        String result = reservaService.confirmarReservaNoMonetaria(id);
+        if (result.equals("Reserva confirmada no monetaria con éxito.")) {
+            return ResponseEntity.ok(result);
+        } else if (result.equals("Reserva no encontrada.")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(result);
+        } else {
+            return ResponseEntity.badRequest().body(result); // Para casos como "ya estaba confirmada"
+        }
+    }
+
     @GetMapping("/facturacion")
     public ResponseEntity<BigDecimal> obtenerTotalFacturado(@RequestParam LocalDate fecha) {
         return ResponseEntity.ok(reservaService.obtenerTotalFacturado(fecha));
+    }
+
+    @GetMapping("/totalNoMonetario")
+    public ResponseEntity<BigDecimal> obtenerTotalNoMonetario(@RequestParam LocalDate fecha){
+        return ResponseEntity.ok(reservaService.obtenerTotalNoMonetario(fecha));
     }
 }

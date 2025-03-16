@@ -7,11 +7,13 @@ public class CierreCajaDTO {
     private BigDecimal facturacion;
     private BigDecimal gastos;
     private BigDecimal cierreCaja;
+    private BigDecimal noMonetario;
 
-    public CierreCajaDTO(BigDecimal facturacion, BigDecimal gastos, BigDecimal cierreCaja) {
+    public CierreCajaDTO(BigDecimal facturacion, BigDecimal gastos, BigDecimal cierreCaja, BigDecimal noMonetario) {
         this.facturacion = facturacion;
         this.gastos = gastos;
         this.cierreCaja = cierreCaja;
+        this.noMonetario = noMonetario;
     }
 
     public CierreCajaDTO(){}
@@ -39,4 +41,13 @@ public class CierreCajaDTO {
     public void setCierreCaja(BigDecimal cierreCaja) {
         this.cierreCaja = cierreCaja;
     }
+
+    public BigDecimal getNoMonetario() {
+        return noMonetario;
+    }
+
+    public void setNoMonetario(BigDecimal noMonetario) {
+        this.noMonetario = noMonetario;
+    }
+
 }

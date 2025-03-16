@@ -32,6 +32,8 @@ public class Reserva {
 
     private boolean estado = false; // Indica si la reserva está pendiente o hecha
 
+    private boolean noMonetario = false; // Agregado para saber si una reserva es bono o crédito NO MONETARIO.
+
     @ManyToOne
     @JoinColumn(name = "cortesia_id")
     private Cortesia cortesia;
@@ -116,9 +118,17 @@ public class Reserva {
     public String getTelefonoCliente() { return telefonoCliente; }
     public void setTelefonoCliente(String telefonoCliente) { this.telefonoCliente = telefonoCliente; }
 
+    public boolean isNoMonetario() {
+        return noMonetario;
+    }
+
+    public void setNoMonetario(boolean noMonetario) {
+        this.noMonetario = noMonetario;
+    }
+
     // Constructor completo
     public Reserva(Long id, LocalDate fecha, LocalTime hora, TipoCorte tipoDeCorte, Usuario usuario,
-                   String nombreCliente, String telefonoCliente, boolean estado, Cortesia cortesia, Socio socio) {
+                   String nombreCliente, String telefonoCliente, boolean estado, boolean noMonetario, Cortesia cortesia, Socio socio) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -127,6 +137,7 @@ public class Reserva {
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
         this.estado = estado;
+        this.noMonetario = noMonetario;
         this.cortesia = cortesia;
         this.socio = socio;
     }

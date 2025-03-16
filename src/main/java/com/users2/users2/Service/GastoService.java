@@ -23,12 +23,14 @@ public class GastoService {
     public CierreCajaDTO calcularCierreCaja(LocalDate fecha) {
         BigDecimal facturacion = reservaRepository.obtenerTotalFacturado(fecha);
         BigDecimal gastos = gastoRepository.calcularGastosPorFecha(fecha);
+        BigDecimal noMonetario = reservaRepository.obtenerTotalNoMonetario(fecha);
 
         // Asegúrate de manejar valores nulos (si las consultas pueden devolver null)
         facturacion = facturacion != null ? facturacion : BigDecimal.ZERO;
         gastos = gastos != null ? gastos : BigDecimal.ZERO;
+        noMonetario = noMonetario != null ? noMonetario : BigDecimal.ZERO;
 
-        return new CierreCajaDTO(facturacion, gastos, facturacion.subtract(gastos));
+        return new CierreCajaDTO(facturacion, gastos, facturacion.subtract(gastos), noMonetario);
     }
 
 

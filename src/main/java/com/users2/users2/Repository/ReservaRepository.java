@@ -18,8 +18,11 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     List<Reserva> findByUsuarioId(Long usuarioId);
 
-    @Query("SELECT SUM(r.tipoDeCorte.precio) FROM Reserva r WHERE r.fecha = :fecha AND r.estado = true")
+    @Query("SELECT SUM(r.tipoDeCorte.precio) FROM Reserva r WHERE r.fecha = :fecha AND r.estado = true AND r.noMonetario = false")
     BigDecimal obtenerTotalFacturado(@Param("fecha") LocalDate fecha);
+
+    @Query("SELECT SUM(r.tipoDeCorte.precio) FROM Reserva r WHERE r.fecha = :fecha AND r.estado = true AND r.noMonetario = true")
+    BigDecimal obtenerTotalNoMonetario(@Param("fecha") LocalDate fecha);
 
 
 }
