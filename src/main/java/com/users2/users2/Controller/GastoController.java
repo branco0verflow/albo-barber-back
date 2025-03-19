@@ -36,6 +36,18 @@ public class GastoController {
         return ResponseEntity.ok(gastoService.calcularCierreCaja(fechaSeleccionada));
     }
 
+    @GetMapping("/cierres-caja")
+    public ResponseEntity<List<CierreCajaDTO>> obtenerCierresCaja(
+            @RequestParam String fechaDesde,
+            @RequestParam String fechaHasta) {
+
+        LocalDate desde = LocalDate.parse(fechaDesde);
+        LocalDate hasta = LocalDate.parse(fechaHasta);
+
+        return ResponseEntity.ok(gastoService.calcularCierresEntreFechas(desde, hasta));
+    }
+
+
     @GetMapping("/por-fecha")
     public List<Gasto> obtenerGastosPorFecha(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         return gastoService.obtenerTodosLosGastosPorFecha(fecha);
