@@ -15,6 +15,7 @@ public class Socio {
     private String apellido;
     private String imagenUrl;
     private String contra;
+    private boolean admin;
 
     public boolean isAdmin() {
         return admin;
@@ -23,8 +24,6 @@ public class Socio {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-
-    private boolean admin;
 
     public Long getId() {
         return id;

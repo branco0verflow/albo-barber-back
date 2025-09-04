@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class ReservaService {
     @Autowired
-    private ReservaRepository reservaRepository;
+    private final ReservaRepository reservaRepository;
 
     public List<Reserva> obtenerTodas() {
         return reservaRepository.findAll();

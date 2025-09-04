@@ -20,7 +20,7 @@ public class Users2Application {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("https://albo-barber-front.vercel.app/", "http://localhost:3000")
+						.allowedOrigins("https://albo-barber-front.vercel.app/", "http://localhost:3000", "https://albobarberia.com/", "https://www.albobarberia.com/")
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
 						.allowedHeaders("Content-Type", "Authorization", "X-Requested-With", "Accept")
 						.allowCredentials(true);
